@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Your Project Description">
+  <meta name="keywords" content="Keyword1, Keyword2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RadGS-Reg: Registering Spine CT with Biplanar X-rays via Joint 
+    3D Radiative Gaussians Reconstruction and 3D/3D Registration</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1">RadGS-Reg: Registering Spine CT with Biplanar X-rays via Joint 
+        3D Radiative Gaussians Reconstruction and 3D/3D Registration</h1>
+      <p class="title is-4">MICCAI 2025</p>
+      <div class="is-size-5 has-text-centered">
+        <p>
+          Ao Shen<sup>1</sup>, 
+          Xueming Fu<sup>2</sup>, 
+          Junfeng Jiang<sup>3 <span style="color:#e83e8c;">&#9993;</span></sup>, 
+          Qiang Zeng<sup>3</sup>, 
+          Ye Tang<sup>1</sup>, 
+          Zhengming Chen<sup>1</sup>, 
+          Luming Nong<sup>4</sup>, 
+          Feng Wang<sup>5</sup>, 
+          S. Kevin Zhou<sup>2 <span style="color:#e83e8c;">&#9993;</span></sup>
+        </p>
+        <p class="is-size-6">
+          <sup>1</sup> College of Information Science and Engineering, Hohai University (HHU), Changzhou Jiangsu, 213200, China <br>
+          <sup>2</sup> School of Biomedical Engineering, Division of Life Sciences and Medicine, University of Science and Technology of China (USTC), Hefei Anhui, 230026, China <br>
+          <sup>3</sup> College of Artificial Intelligence and Automation, HHU, Changzhou Jiangsu, 213200, China <br>
+          <sup>4</sup> The Third Affiliated Hospital of Nanjing Medical University, Changzhou Jiangsu, 213164, China <br>
+          <sup>5</sup> Tuodao Medical Technology Co., Ltd., Nanjing Jiangsu, 210012, China
+        </p>
+      </div>
+      <div class="publication-links" style="margin-top:1em;">
+        <a href="https://arxiv.org/abs/2508.21154" class="button is-dark is-rounded"><i class="ai ai-arxiv"></i>&nbsp;arXiv</a>
+        <a href="https://github.com/shenao1995/RadGS_Reg" class="button is-dark is-rounded"><i class="fab fa-github"></i>&nbsp;Code</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-4">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>
+          Computed Tomography (CT)/X-ray registration in image
+          guided navigation remains challenging because of its stringent requirements
+          for high accuracy and real-time performance. Traditional "render
+          and compare" methods, relying on iterative projection and comparison,
+          suffer from spatial information loss and domain gap. 3D reconstruction 
+          from biplanar X-rays supplements spatial and shape information
+          for 2D/3D registration, but current methods are limited by dense-view
+          requirements and struggles with noisy X-rays. To address these limitations,
+          we introduce RadGS-Reg, a novel framework for vertebral-level
+          CT/X-ray registration through joint 3D Radiative Gaussians (RadGS)
+          reconstruction and 3D/3D registration. Specifically, our biplanar X-rays
+          vertebral RadGS reconstruction module explores learning-based RadGS
+          reconstruction method with a Counterfactual Attention Learning (CAL)
+          mechanism, focusing on vertebral regions in noisy X-rays. Additionally,
+          a patient-specific pre-training strategy progressively adapts the RadGS
+          Reg from simulated to real data while simultaneously learning vertebral
+          shape prior knowledge. Experiments on in-house datasets demonstrate
+          the state-of-the-art performance for both tasks, surpassing existing methods.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Project Overview</h2>
+    <div class="content has-text-centered">
+      <img src="./static/images/overview.jpg" width="100%">
+    </div>
+    <p class="content has-text-justified">
+      Inspired by recent progress in 3D reconstruction in the field of computer
+      vision, we present a novel approach termed RadGS-Reg to joint learning of
+      Radiative Gaussians Reconstruction and 3D/3D Registration for CT/Xray 
+      Registration. This methodology entails the transformation of biplanar X-rays
+      inputs into Radiative Gaussians (RadGS), which is subsequently registered with
+      the provided CT volume. The task of accurately reconstructing RadGS using
+      only biplanar X-rays presents a significant challenge. To address this, we unveil
+      the synergistic interaction between 3D reconstruction and CT/3D Gaussians
+      registration. Specifically, the shape of the preoperative CT volume constitutes
+      the ultimate target within the 3D reconstruction process. Concurrently, the pose
+      of the RadGS derived from biplanar X-rays is registered with the target pose
+      of the preoperative CT volume. To mitigate the issue of spinal pose variation
+      in CT and X-ray, we utilize the visually-grounded, region-specific vertebral-level
+      identified in X-rays, along with the vertebral-level in the CT volume segmented
+      using existing methods for vertebrae segmentation. To address the complication 
+      posed by the overlap of adjacent vertebral joints, which may impede the
+      reconstruction of individual vertebrae, we integrate Counterfactual Attention
+      Learning (CAL), concentrating on vertebra regions to enhance reconstruction accuracy.
+    </p>
+  </div>
+</section>
+
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Efficiency of the modules within RadGS-Reg</h2>
+      <div class="content has-text-centered">
+        <img src="./static/images/table2.png" width="100%">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <div class="content has-text-centered">
+      <img src="./static/images/table1.png" width="100%">
+      <video src="./static/images/results1.mp4" width="100%" autoplay loop muted playsinline></video>
+      <video src="./static/images/results2.mp4" width="100%" autoplay loop muted playsinline></video>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content">
+        <p>
+          This website is licensed under a <a rel="license"
+                                              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+        <p>
+          Website adapted from the following <a href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+
+</body>
+</html>

@@ -104,7 +104,7 @@ with sync_playwright() as p:
         configure(m,mobile_errors,mobile_bad)
         m.goto(url,wait_until='networkidle'); m.locator('#qualitative').scroll_into_view_if_needed(); loaded(m)
         assert m.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile page overflows horizontally'
-        assert 'Pinch' in m.locator('#volume-interaction-help').inner_text()
+        assert m.locator('#volume-interaction-help').count() == 0
         m.locator('[data-sample="sample-05"]').click(); loaded(m)
         assert not m.locator('#auto-rotate').is_checked()
         m.locator('#reconstruction-demo').screenshot(path=str(args.output/'mobile-viewer.png'))

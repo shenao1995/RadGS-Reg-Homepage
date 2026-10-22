@@ -56,6 +56,57 @@
   </div>
 </section>
 
+<section class="section qualitative-section" id="qualitative">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Visualization</h2>
+    <p class="qualitative-intro has-text-centered">
+      From two X-rays to a 3D vertebra. Select a sample to explore its RecM reconstruction.
+    </p>
+    <div class="reconstruction-demo" id="reconstruction-demo" aria-busy="true">
+      <div class="demo-heading">
+        <div><span class="demo-eyebrow">BIPLANAR RECONSTRUCTION</span>
+          <h3 id="active-sample-title">Sample 01 <span>· L1</span></h3>
+        </div>
+        <span class="demo-volume-tag">128 × 128 × 128 volume</span>
+      </div>
+      <div class="demo-workspace">
+        <div class="demo-inputs" aria-label="Input X-rays">
+          <div class="input-heading">Input X-rays <span>2 views</span></div>
+          <figure class="xray-card">
+            <figcaption><span>AP</span> Anteroposterior</figcaption>
+            <img id="input-ap" src="./static/volumes/sample-01-ap.png" alt="Sample 01 AP input X-ray" width="128" height="128">
+          </figure>
+          <figure class="xray-card">
+            <figcaption><span>LAT</span> Lateral</figcaption>
+            <img id="input-lateral" src="./static/volumes/sample-01-lateral.png" alt="Sample 01 lateral input X-ray" width="128" height="128">
+          </figure>
+        </div>
+        <div class="volume-stage" id="volume-stage" aria-label="Interactive reconstructed volume">
+          <div class="stage-caption"><span class="stage-indicator"></span> Reconstructed volume</div>
+          <div id="volume-status" class="volume-status" role="status" aria-live="polite">Loading reconstruction…</div>
+          <canvas id="volume-canvas" tabindex="0" aria-label="Interactive reconstruction of a vertebra"></canvas>
+          <img id="volume-fallback" hidden alt="Reconstructed volume slices" src="./static/volumes/sample-01-slices.webp">
+          <div class="volume-legend" aria-label="Viridis: lower to higher reconstructed attenuation">
+            <span>Attenuation</span><div class="viridis-gradient"></div><div class="legend-labels"><span>Low</span><span>High</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="viewer-controls">
+        <label class="range-control" for="density-cutoff">Density cutoff <input type="range" id="density-cutoff" min="0.03" max="0.45" step="0.01" value="0.12"><output for="density-cutoff" id="density-value">0.12</output></label>
+        <label class="range-control" for="volume-opacity">Opacity <input type="range" id="volume-opacity" min="0.4" max="3.5" step="0.1" value="1.6"></label>
+        <div class="viewer-actions"><label class="rotate-control"><input type="checkbox" id="auto-rotate"> Auto rotate</label><button type="button" id="reset-volume-view">Reset view</button></div>
+      </div>
+      <div class="sample-picker-heading">Choose a sample <span>AP + lateral inputs</span></div>
+      <div class="sample-picker" id="sample-picker" role="group" aria-label="Select a test sample"></div>
+      <noscript><p class="demo-noscript">Enable JavaScript to explore the interactive volume. The input images and <a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">volume slice previews</a> are also available in the dataset.</p></noscript>
+    </div>
+    <p class="qualitative-note">
+      Five held-out <a href="https://huggingface.co/datasets/alexanderdann/CTSpine1K">CTSpine1K</a> samples with simulated AP and lateral X-rays. Colors indicate reconstructed attenuation.
+      <a href="https://huggingface.co/shenao1995/RadGS-Reg-RecM">Model</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">Test data</a>
+    </p>
+  </div>
+</section>
+
 <section class="hero is-light">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
@@ -136,57 +187,7 @@
 </section>
 
 
-<section class="section qualitative-section" id="qualitative">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Qualitative Visualization</h2>
-    <p class="qualitative-intro has-text-centered">
-      From two X-rays to a 3D vertebra. Select a sample to explore its RecM reconstruction.
-    </p>
-    <div class="reconstruction-demo" id="reconstruction-demo" aria-busy="true">
-      <div class="demo-heading">
-        <div><span class="demo-eyebrow">BIPLANAR RECONSTRUCTION</span>
-          <h3 id="active-sample-title">Sample 01 <span>· L1</span></h3>
-        </div>
-        <span class="demo-volume-tag">128 × 128 × 128 volume</span>
-      </div>
-      <div class="demo-workspace">
-        <div class="demo-inputs" aria-label="Input X-rays">
-          <div class="input-heading">Input X-rays <span>2 views</span></div>
-          <figure class="xray-card">
-            <figcaption><span>AP</span> Anteroposterior</figcaption>
-            <img id="input-ap" src="./static/volumes/sample-01-ap.png" alt="Sample 01 AP input X-ray" width="128" height="128">
-          </figure>
-          <figure class="xray-card">
-            <figcaption><span>LAT</span> Lateral</figcaption>
-            <img id="input-lateral" src="./static/volumes/sample-01-lateral.png" alt="Sample 01 lateral input X-ray" width="128" height="128">
-          </figure>
-        </div>
-        <div class="volume-stage" id="volume-stage" aria-label="Interactive reconstructed volume">
-          <div class="stage-caption"><span class="stage-indicator"></span> Reconstructed volume</div>
-          <div id="volume-status" class="volume-status" role="status" aria-live="polite">Loading reconstruction…</div>
-          <canvas id="volume-canvas" tabindex="0" aria-label="Reconstructed vertebra. Drag to rotate, scroll to zoom, right-drag to pan." aria-describedby="volume-interaction-help"></canvas>
-          <img id="volume-fallback" hidden alt="Reconstructed volume slices" src="./static/volumes/sample-01-slices.webp">
-          <div class="volume-legend" aria-label="Viridis: lower to higher reconstructed attenuation">
-            <span>Attenuation</span><div class="viridis-gradient"></div><div class="legend-labels"><span>Low</span><span>High</span></div>
-          </div>
-          <div class="stage-hint" id="volume-interaction-help">Drag to rotate <span>·</span> Scroll to zoom <span>·</span> Right-drag to pan</div>
-        </div>
-      </div>
-      <div class="viewer-controls">
-        <label class="range-control" for="density-cutoff">Density cutoff <input type="range" id="density-cutoff" min="0.03" max="0.45" step="0.01" value="0.12"><output for="density-cutoff" id="density-value">0.12</output></label>
-        <label class="range-control" for="volume-opacity">Opacity <input type="range" id="volume-opacity" min="0.4" max="3.5" step="0.1" value="1.6"></label>
-        <div class="viewer-actions"><label class="rotate-control"><input type="checkbox" id="auto-rotate"> Auto rotate</label><button type="button" id="reset-volume-view">Reset view</button></div>
-      </div>
-      <div class="sample-picker-heading">Choose a sample <span>AP + lateral inputs</span></div>
-      <div class="sample-picker" id="sample-picker" role="group" aria-label="Select a test sample"></div>
-      <noscript><p class="demo-noscript">Enable JavaScript to explore the interactive volume. The input images and <a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">volume slice previews</a> are also available in the dataset.</p></noscript>
-    </div>
-    <p class="qualitative-note">
-      Five held-out <a href="https://huggingface.co/datasets/alexanderdann/CTSpine1K">CTSpine1K</a> samples with simulated AP and lateral X-rays. Colors indicate reconstructed attenuation.
-      <a href="https://huggingface.co/shenao1995/RadGS-Reg-RecM">Model</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">Test data</a>
-    </p>
-  </div>
-</section>
+
 
 <footer class="footer">
   <div class="columns is-centered">

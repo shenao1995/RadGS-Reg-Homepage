@@ -13,9 +13,6 @@ const rotation = document.querySelector('#auto-rotate');
 const reset = document.querySelector('#reset-volume-view');
 const assetRoot = new URL('../volumes/', import.meta.url);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-if (matchMedia('(pointer: coarse)').matches) {
-  document.querySelector('#volume-interaction-help').textContent = 'Drag to rotate · Pinch to zoom · Two fingers to pan';
-}
 const volumeCache = new Map();
 const cameraLocal = new THREE.Vector3();
 let manifest, activeSample, renderer, scene, camera, controls, mesh, material;

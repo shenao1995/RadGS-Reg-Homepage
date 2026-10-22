@@ -1,0 +1,133 @@
+{
+  "schema": "radgs-web-volume-v1",
+  "checkpoint": "best_detail.pth",
+  "checkpointEpoch": 68,
+  "model": "https://huggingface.co/shenao1995/RadGS-Reg-RecM",
+  "dataset": "https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10",
+  "sourceVolumeAxes": "XYZ",
+  "textureStorage": "little-endian IEEE float16, x-fastest, then y, then z",
+  "displayWindow": "0 to per-prediction positive P99.8 attenuation; encoded as float16 for browser display only",
+  "inputViews": {
+    "ap": 25,
+    "lateral": 0
+  },
+  "inputResize": "area to 128x128, matching GSDataset Resize",
+  "palette": "viridis.rgba",
+  "cases": [
+    {
+      "id": "sample-01",
+      "label": "Sample 01",
+      "vertebra": "L1",
+      "sample": "COLONOG__1.3.6.1.4.1.9328.50.4.0006_L1",
+      "originalTestIndex": 0,
+      "volume": "sample-01.bin",
+      "ap": "sample-01-ap.png",
+      "lateral": "sample-01-lateral.png",
+      "fallback": "sample-01-slices.webp",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "spacingMm": [
+        1,
+        1,
+        1
+      ],
+      "displayMaxAttenuation": 0.06790280038118364,
+      "sha256": "10b2cf17bf27fcfcdc47db767b727733b144902bc0268ba031a1f2a471cef4c9"
+    },
+    {
+      "id": "sample-02",
+      "label": "Sample 02",
+      "vertebra": "L4",
+      "sample": "COLONOG__1.3.6.1.4.1.9328.50.4.0097_L4",
+      "originalTestIndex": 48,
+      "volume": "sample-02.bin",
+      "ap": "sample-02-ap.png",
+      "lateral": "sample-02-lateral.png",
+      "fallback": "sample-02-slices.webp",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "spacingMm": [
+        1,
+        1,
+        1
+      ],
+      "displayMaxAttenuation": 0.06668142187595373,
+      "sha256": "5ba4d429e095df87266778ee0251ba6a6c2922222ce47fd97f827a179427f361"
+    },
+    {
+      "id": "sample-03",
+      "label": "Sample 03",
+      "vertebra": "L2",
+      "sample": "COLONOG__1.3.6.1.4.1.9328.50.4.0252_L2",
+      "originalTestIndex": 96,
+      "volume": "sample-03.bin",
+      "ap": "sample-03-ap.png",
+      "lateral": "sample-03-lateral.png",
+      "fallback": "sample-03-slices.webp",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "spacingMm": [
+        1,
+        1,
+        1
+      ],
+      "displayMaxAttenuation": 0.059402575030923034,
+      "sha256": "aca1be482463a8e97af0aea95298c76dec1d5aa09abeb253a7c8aa8639592aff"
+    },
+    {
+      "id": "sample-04",
+      "label": "Sample 04",
+      "vertebra": "L5",
+      "sample": "COLONOG__1.3.6.1.4.1.9328.50.4.0593_L5",
+      "originalTestIndex": 287,
+      "volume": "sample-04.bin",
+      "ap": "sample-04-ap.png",
+      "lateral": "sample-04-lateral.png",
+      "fallback": "sample-04-slices.webp",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "spacingMm": [
+        1,
+        1,
+        1
+      ],
+      "displayMaxAttenuation": 0.05970820377767085,
+      "sha256": "0d80aac40251b6f27fc53f47c2a897a7360ea9a9a386da47c4cc48204eb9271e"
+    },
+    {
+      "id": "sample-05",
+      "label": "Sample 05",
+      "vertebra": "L5",
+      "sample": "MSD-T10__liver_87_L5",
+      "originalTestIndex": 430,
+      "volume": "sample-05.bin",
+      "ap": "sample-05-ap.png",
+      "lateral": "sample-05-lateral.png",
+      "fallback": "sample-05-slices.webp",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "spacingMm": [
+        1,
+        1,
+        1
+      ],
+      "displayMaxAttenuation": 0.057000150412321274,
+      "sha256": "9124fdc775e31ed57a26c293556989134480b9312d71eca4569bf9cd2438c386"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+static/volumes/*.bin binary
+static/volumes/*.rgba binary
+static/volumes/*.png binary
+static/volumes/*.webp binary

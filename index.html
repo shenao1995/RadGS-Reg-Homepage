@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Your Project Description">
-  <meta name="keywords" content="Keyword1, Keyword2">
+  <meta name="description" content="RadGS-Reg: biplanar X-ray reconstruction and CT registration. Explore interactive 3D vertebral reconstructions from AP and lateral X-rays.">
+  <meta name="keywords" content="RadGS-Reg, X-ray, CT, 3D reconstruction, Gaussian splatting, MICCAI">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RadGS-Reg: Registering Spine CT with Biplanar X-rays via Joint 
     3D Radiative Gaussians Reconstruction and 3D/3D Registration</title>
@@ -13,17 +13,12 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
 
   <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <link rel="stylesheet" href="./static/css/volume-viewer.css">
+  <script type="module" src="./static/js/volume-viewer.js"></script>
 </head>
 <body>
 
@@ -136,9 +131,60 @@
     <h2 class="title is-3 has-text-centered">Results</h2>
     <div class="content has-text-centered">
       <img src="./static/images/table1.png" width="100%">
-      <video src="./static/images/results1.mp4" width="100%" autoplay loop muted playsinline></video>
-      <video src="./static/images/results2.mp4" width="100%" autoplay loop muted playsinline></video>
     </div>
+  </div>
+</section>
+
+
+<section class="section qualitative-section" id="qualitative">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Visualization</h2>
+    <p class="qualitative-intro has-text-centered">
+      From two X-rays to a 3D vertebra. Select a sample to explore its RecM reconstruction.
+    </p>
+    <div class="reconstruction-demo" id="reconstruction-demo" aria-busy="true">
+      <div class="demo-heading">
+        <div><span class="demo-eyebrow">BIPLANAR RECONSTRUCTION</span>
+          <h3 id="active-sample-title">Sample 01 <span>· L1</span></h3>
+        </div>
+        <span class="demo-volume-tag">128 × 128 × 128 volume</span>
+      </div>
+      <div class="demo-workspace">
+        <div class="demo-inputs" aria-label="Input X-rays">
+          <div class="input-heading">Input X-rays <span>2 views</span></div>
+          <figure class="xray-card">
+            <figcaption><span>AP</span> Anteroposterior</figcaption>
+            <img id="input-ap" src="./static/volumes/sample-01-ap.png" alt="Sample 01 AP input X-ray" width="128" height="128">
+          </figure>
+          <figure class="xray-card">
+            <figcaption><span>LAT</span> Lateral</figcaption>
+            <img id="input-lateral" src="./static/volumes/sample-01-lateral.png" alt="Sample 01 lateral input X-ray" width="128" height="128">
+          </figure>
+        </div>
+        <div class="volume-stage" id="volume-stage" aria-label="Interactive reconstructed volume">
+          <div class="stage-caption"><span class="stage-indicator"></span> Reconstructed volume</div>
+          <div id="volume-status" class="volume-status" role="status" aria-live="polite">Loading reconstruction…</div>
+          <canvas id="volume-canvas" tabindex="0" aria-label="Reconstructed vertebra. Drag to rotate, scroll to zoom, right-drag to pan." aria-describedby="volume-interaction-help"></canvas>
+          <img id="volume-fallback" hidden alt="Reconstructed volume slices" src="./static/volumes/sample-01-slices.webp">
+          <div class="volume-legend" aria-label="Viridis: lower to higher reconstructed attenuation">
+            <span>Attenuation</span><div class="viridis-gradient"></div><div class="legend-labels"><span>Low</span><span>High</span></div>
+          </div>
+          <div class="stage-hint" id="volume-interaction-help">Drag to rotate <span>·</span> Scroll to zoom <span>·</span> Right-drag to pan</div>
+        </div>
+      </div>
+      <div class="viewer-controls">
+        <label class="range-control" for="density-cutoff">Density cutoff <input type="range" id="density-cutoff" min="0.03" max="0.45" step="0.01" value="0.12"><output for="density-cutoff" id="density-value">0.12</output></label>
+        <label class="range-control" for="volume-opacity">Opacity <input type="range" id="volume-opacity" min="0.4" max="3.5" step="0.1" value="1.6"></label>
+        <div class="viewer-actions"><label class="rotate-control"><input type="checkbox" id="auto-rotate"> Auto rotate</label><button type="button" id="reset-volume-view">Reset view</button></div>
+      </div>
+      <div class="sample-picker-heading">Choose a sample <span>AP + lateral inputs</span></div>
+      <div class="sample-picker" id="sample-picker" role="group" aria-label="Select a test sample"></div>
+      <noscript><p class="demo-noscript">Enable JavaScript to explore the interactive volume. The input images and <a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">volume slice previews</a> are also available in the dataset.</p></noscript>
+    </div>
+    <p class="qualitative-note">
+      Five held-out <a href="https://huggingface.co/datasets/alexanderdann/CTSpine1K">CTSpine1K</a> samples with simulated AP and lateral X-rays. Colors indicate reconstructed attenuation.
+      <a href="https://huggingface.co/shenao1995/RadGS-Reg-RecM">Model</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">Test data</a>
+    </p>
   </div>
 </section>
 
@@ -147,7 +193,7 @@
     <div class="column is-8">
       <div class="content">
         <p>
-          This website is licensed under a <a rel="license"
+          The website template is licensed under a <a rel="license"
                                               href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
           Commons Attribution-ShareAlike 4.0 International License</a>.
         </p>
@@ -157,7 +203,6 @@
       </div>
     </div>
   </div>
-</div>
 </footer>
 
 </body>

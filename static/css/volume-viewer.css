@@ -59,6 +59,7 @@
 .sample-image-triple { display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:1px; background:#263044; border-radius:4px; overflow:hidden; }
 .sample-preview { display:flex; flex-direction:column; min-width:0; background:#080f1b; }
 .sample-preview img { width:100%; height:auto; aspect-ratio:1; object-fit:cover; display:block; }
+.sample-preview:nth-child(-n+2) img { object-fit:contain; }
 .sample-preview > span { padding:3px 1px; text-align:center; font-size:10px; white-space:nowrap; color:#b1c1d2; }
 .sample-button-label { display:flex; justify-content:space-between; gap:4px; padding:8px 3px 3px; color:#4f6073; font-size:15px; }
 .sample-button-label span:last-child { color:#92a1b0; }

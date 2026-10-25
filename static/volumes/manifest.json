@@ -72,8 +72,8 @@
       "volume": "sample-01.bin",
       "moving": "sample-01-moving.bin",
       "registered": "sample-01-registered.bin",
-      "ap": "sample-01-ap.png",
-      "lateral": "sample-01-lateral.png",
+      "ap": "sample-01-ap-roi.svg",
+      "lateral": "sample-01-lateral-roi.svg",
       "fallback": "sample-01-slices.webp",
       "movingFallback": "sample-01-moving-slices.webp",
       "registrationFallback": "sample-01-registration-slices.webp",
@@ -83,7 +83,21 @@
         "moving": "cf5662d35370b6dd21cbcfa829756927894bf73c975460d86e23a976a12a3409",
         "registered": "f11ec4ac87f92b1cd9bacdad6adf54b8b744d8edeaf5d5a969e41a3fe2d6be26"
       },
-      "transform": "sample-01-transform.json"
+      "transform": "sample-01-transform.json",
+      "apSource": "sample-01-ap.png",
+      "apRoi": [
+        43,
+        43,
+        41,
+        42
+      ],
+      "lateralSource": "sample-01-lateral.png",
+      "lateralRoi": [
+        33,
+        41,
+        62,
+        45
+      ]
     },
     {
       "id": "sample-02",
@@ -105,8 +119,8 @@
       "volume": "sample-02.bin",
       "moving": "sample-02-moving.bin",
       "registered": "sample-02-registered.bin",
-      "ap": "sample-02-ap.png",
-      "lateral": "sample-02-lateral.png",
+      "ap": "sample-02-ap-roi.svg",
+      "lateral": "sample-02-lateral-roi.svg",
       "fallback": "sample-02-slices.webp",
       "movingFallback": "sample-02-moving-slices.webp",
       "registrationFallback": "sample-02-registration-slices.webp",
@@ -116,7 +130,21 @@
         "moving": "302f6679f1845b7982e23c8f01897c105d27450119bcb2263ba807e7a8b45990",
         "registered": "2448a0616ac4d245554a915c79af8985089e8400ccdbbb53d2e8282e30578081"
       },
-      "transform": "sample-02-transform.json"
+      "transform": "sample-02-transform.json",
+      "apSource": "sample-02-ap.png",
+      "apRoi": [
+        37,
+        45,
+        54,
+        38
+      ],
+      "lateralSource": "sample-02-lateral.png",
+      "lateralRoi": [
+        36,
+        45,
+        56,
+        38
+      ]
     },
     {
       "id": "sample-03",
@@ -138,8 +166,8 @@
       "volume": "sample-03.bin",
       "moving": "sample-03-moving.bin",
       "registered": "sample-03-registered.bin",
-      "ap": "sample-03-ap.png",
-      "lateral": "sample-03-lateral.png",
+      "ap": "sample-03-ap-roi.svg",
+      "lateral": "sample-03-lateral-roi.svg",
       "fallback": "sample-03-slices.webp",
       "movingFallback": "sample-03-moving-slices.webp",
       "registrationFallback": "sample-03-registration-slices.webp",
@@ -149,7 +177,21 @@
         "moving": "8bec3c2ea6a831753e7069252669de7511a276fde4a3edfe9e7f992de26f318e",
         "registered": "a7d4d4d397f8f4ba512ddcad089c5bdcf68125bf066f3636da7efadbeabfdcd8"
       },
-      "transform": "sample-03-transform.json"
+      "transform": "sample-03-transform.json",
+      "apSource": "sample-03-ap.png",
+      "apRoi": [
+        33,
+        43,
+        62,
+        42
+      ],
+      "lateralSource": "sample-03-lateral.png",
+      "lateralRoi": [
+        33,
+        43,
+        62,
+        43
+      ]
     },
     {
       "id": "sample-04",
@@ -171,8 +213,8 @@
       "volume": "sample-04.bin",
       "moving": "sample-04-moving.bin",
       "registered": "sample-04-registered.bin",
-      "ap": "sample-04-ap.png",
-      "lateral": "sample-04-lateral.png",
+      "ap": "sample-04-ap-roi.svg",
+      "lateral": "sample-04-lateral-roi.svg",
       "fallback": "sample-04-slices.webp",
       "movingFallback": "sample-04-moving-slices.webp",
       "registrationFallback": "sample-04-registration-slices.webp",
@@ -182,7 +224,21 @@
         "moving": "644e552332b6417e121b3f1775ed86b3c3753adb097348de886c58b69a80bd95",
         "registered": "882b87a61489c828c26dfd953ef4dc7e29ba7ec81ca4623befedd3bc517c768d"
       },
-      "transform": "sample-04-transform.json"
+      "transform": "sample-04-transform.json",
+      "apSource": "sample-04-ap.png",
+      "apRoi": [
+        29,
+        44,
+        70,
+        40
+      ],
+      "lateralSource": "sample-04-lateral.png",
+      "lateralRoi": [
+        35,
+        45,
+        58,
+        38
+      ]
     },
     {
       "id": "sample-05",
@@ -204,8 +260,8 @@
       "volume": "sample-05.bin",
       "moving": "sample-05-moving.bin",
       "registered": "sample-05-registered.bin",
-      "ap": "sample-05-ap.png",
-      "lateral": "sample-05-lateral.png",
+      "ap": "sample-05-ap-roi.svg",
+      "lateral": "sample-05-lateral-roi.svg",
       "fallback": "sample-05-slices.webp",
       "movingFallback": "sample-05-moving-slices.webp",
       "registrationFallback": "sample-05-registration-slices.webp",
@@ -215,7 +271,21 @@
         "moving": "dc2c40970cfcf0cd4b855c4cfd98d4168ce06cc5772bb093b16df97571a1ceeb",
         "registered": "57b287b5b1f99fb25eb0f5975f7cab743464d0bbbf720ca3c4b0831415f3cc31"
       },
-      "transform": "sample-05-transform.json"
+      "transform": "sample-05-transform.json",
+      "apSource": "sample-05-ap.png",
+      "apRoi": [
+        25,
+        45,
+        78,
+        38
+      ],
+      "lateralSource": "sample-05-lateral.png",
+      "lateralRoi": [
+        33,
+        45,
+        62,
+        37
+      ]
     }
   ]
 }

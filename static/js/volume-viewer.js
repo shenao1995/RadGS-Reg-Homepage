@@ -381,7 +381,7 @@ reset.addEventListener('click',resetView);
 reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) rotation.checked = false; });
 setRegistrationMode('after');
 try {
-  const response = await fetch(asset('manifest.json?v=registration-1'));
+  const response = await fetch(asset('manifest.json?v=projection-roi-1'));
   if (!response.ok) throw new Error('Sample manifest unavailable');
   manifest = await response.json();
   buildPicker();

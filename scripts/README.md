@@ -31,7 +31,17 @@ python scripts/export_registration_assets.py \
 ```
 
 The exporter requires PyTorch, NumPy, nibabel, Pillow and matplotlib. Existing
-AP/LAT images preserve the original training-loader area resize to 128².
+AP/LAT source images preserve the original training-loader area resize to 128².
+After exporting, frame the input previews and sample thumbnails around the
+nonzero projection foreground with a small margin:
+
+```bash
+python scripts/crop_projection_rois.py --assets static/volumes
+```
+
+This writes self-contained SVG viewports embedding the unchanged PNG pixels.
+The manifest retains the source filenames and ROI coordinates; only the
+website presentation is cropped, with the original aspect ratio preserved.
 `export_volume_assets.py` is the earlier reconstruction-only exporter; it is
 not the exporter for the current three-view demo.
 

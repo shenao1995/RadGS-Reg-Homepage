@@ -17,8 +17,8 @@
 
   <!-- JS -->
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <link rel="stylesheet" href="./static/css/volume-viewer.css?v=layout-2">
-  <script type="module" src="./static/js/volume-viewer.js?v=layout-2"></script>
+  <link rel="stylesheet" href="./static/css/volume-viewer.css?v=registration-1">
+  <script type="module" src="./static/js/volume-viewer.js?v=registration-1"></script>
 </head>
 <body>
 
@@ -60,49 +60,67 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Qualitative Visualization</h2>
     <p class="qualitative-intro has-text-centered">
-      From two X-rays to a 3D vertebra. Select a sample to explore its RecM reconstruction.
+      Explore biplanar reconstruction and CT registration across five test samples.
     </p>
     <div class="reconstruction-demo" id="reconstruction-demo" aria-busy="true">
       <div class="demo-heading">
-        <div><span class="demo-eyebrow">BIPLANAR RECONSTRUCTION</span>
+        <div><span class="demo-eyebrow">RECONSTRUCTION &amp; REGISTRATION</span>
           <h3 id="active-sample-title">Sample 01 <span>· L1</span></h3>
         </div>
-        <span class="demo-volume-tag">128 × 128 × 128 volume</span>
+        <span class="demo-volume-tag">Interactive 3D volumes</span>
       </div>
       <div class="demo-workspace">
-        <div class="demo-inputs" aria-label="Input X-rays">
-          <div class="input-heading">Input X-rays <span>2 views</span></div>
+        <div class="demo-inputs" aria-label="Input X-rays and moving CT">
+          <div class="input-heading">Inputs</div>
           <figure class="xray-card">
-            <figcaption><span>AP</span> Anteroposterior</figcaption>
-            <img id="input-ap" src="./static/volumes/sample-01-ap.png" alt="Sample 01 AP input X-ray" width="128" height="128">
+            <figcaption>AP</figcaption>
+            <img id="input-ap" src="./static/volumes/sample-01-ap.png" alt="Sample 01 AP X-ray" width="128" height="128">
           </figure>
           <figure class="xray-card">
-            <figcaption><span>LAT</span> Lateral</figcaption>
-            <img id="input-lateral" src="./static/volumes/sample-01-lateral.png" alt="Sample 01 lateral input X-ray" width="128" height="128">
+            <figcaption>LAT</figcaption>
+            <img id="input-lateral" src="./static/volumes/sample-01-lateral.png" alt="Sample 01 lateral X-ray" width="128" height="128">
           </figure>
+          <div class="volume-stage moving-stage" data-volume-view="moving" aria-label="Interactive moving CT volume">
+            <div class="stage-caption"><span class="stage-indicator"></span> Moving CT</div>
+            <div class="volume-status" role="status">Loading moving CT…</div>
+            <canvas id="moving-canvas" tabindex="0" aria-label="Interactive moving CT"></canvas>
+            <img class="volume-fallback" hidden alt="Moving CT slices" src="./static/volumes/sample-01-moving-slices.webp">
+          </div>
         </div>
-        <div class="volume-stage" id="volume-stage" aria-label="Interactive reconstructed volume">
-          <div class="stage-caption"><span class="stage-indicator"></span> Reconstructed volume</div>
-          <div id="volume-status" class="volume-status" role="status" aria-live="polite">Loading reconstruction…</div>
-          <canvas id="volume-canvas" tabindex="0" aria-label="Interactive reconstruction of a vertebra"></canvas>
-          <img id="volume-fallback" hidden alt="Reconstructed volume slices" src="./static/volumes/sample-01-slices.webp">
-          <div class="volume-legend" aria-label="Viridis: lower to higher reconstructed attenuation">
+        <div class="volume-stage reconstruction-stage" id="volume-stage" data-volume-view="reconstruction" aria-label="Interactive reconstructed volume">
+          <div class="stage-caption"><span class="stage-indicator"></span> Reconstruction</div>
+          <div id="volume-status" class="volume-status" role="status">Loading reconstruction…</div>
+          <canvas id="volume-canvas" tabindex="0" aria-label="Interactive reconstructed vertebra"></canvas>
+          <img id="volume-fallback" class="volume-fallback" hidden alt="Reconstructed volume slices" src="./static/volumes/sample-01-slices.webp">
+          <div class="volume-legend" aria-label="Viridis attenuation scale">
             <span>Attenuation</span><div class="viridis-gradient"></div><div class="legend-labels"><span>Low</span><span>High</span></div>
           </div>
+        </div>
+        <div class="volume-stage registration-stage" data-volume-view="registration" aria-label="Interactive reconstruction and CT registration overlay">
+          <div class="stage-caption"><span class="stage-indicator"></span> Registration</div>
+          <div class="registration-modes" role="group" aria-label="Registration comparison">
+            <button type="button" data-registration-mode="before" aria-pressed="false">Before</button>
+            <button type="button" data-registration-mode="after" aria-pressed="true">After</button>
+          </div>
+          <div class="volume-status" role="status">Loading registration…</div>
+          <canvas id="registration-canvas" tabindex="0" aria-label="Interactive overlay of reconstruction and registered CT"></canvas>
+          <img class="volume-fallback" hidden alt="Registration overlay slices" src="./static/volumes/sample-01-registration-slices.webp">
+          <div class="overlay-key"><span><i class="fixed-swatch"></i> Reconstruction</span><span><i class="ct-swatch"></i> <span id="registration-ct-label">Registered CT</span></span></div>
         </div>
       </div>
       <div class="viewer-controls">
         <label class="range-control" for="density-cutoff">Density cutoff <input type="range" id="density-cutoff" min="0.03" max="0.45" step="0.01" value="0.12"><output for="density-cutoff" id="density-value">0.12</output></label>
         <label class="range-control" for="volume-opacity">Opacity <input type="range" id="volume-opacity" min="0.4" max="3.5" step="0.1" value="1.6"></label>
+        <label class="range-control" for="overlay-blend">CT overlay <input type="range" id="overlay-blend" min="0" max="1" step="0.05" value="0.5"><output for="overlay-blend" id="blend-value">50%</output></label>
         <div class="viewer-actions"><label class="rotate-control"><input type="checkbox" id="auto-rotate"> Auto rotate</label><button type="button" id="reset-volume-view">Reset view</button></div>
       </div>
-      <div class="sample-picker-heading">Choose a sample <span>AP + lateral inputs</span></div>
+      <div class="sample-picker-heading">Choose a sample <span>AP + LAT + moving CT</span></div>
       <div class="sample-picker" id="sample-picker" role="group" aria-label="Select a test sample"></div>
-      <noscript><p class="demo-noscript">Enable JavaScript to explore the interactive volume. The input images and <a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">volume slice previews</a> are also available in the dataset.</p></noscript>
+      <noscript><p class="demo-noscript">Enable JavaScript to explore the interactive volumes. The test samples are available in the <a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test">dataset</a>.</p></noscript>
     </div>
     <p class="qualitative-note">
-      Five held-out <a href="https://huggingface.co/datasets/alexanderdann/CTSpine1K">CTSpine1K</a> samples with simulated AP and lateral X-rays. Colors indicate reconstructed attenuation.
-      <a href="https://huggingface.co/shenao1995/RadGS-Reg-RecM">Model</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test-10">Test data</a>
+      Five held-out <a href="https://huggingface.co/datasets/alexanderdann/CTSpine1K">CTSpine1K</a> samples with simulated X-rays. Reconstruction and CT share the same physical frame; the overlay shows the model-predicted rigid registration.
+      <a href="https://huggingface.co/shenao1995/RadGS-Reg-RegM">Model</a><span aria-hidden="true"> · </span><a href="https://huggingface.co/datasets/shenao1995/RadGS-Reg-Test">Test data</a>
     </p>
   </div>
 </section>
